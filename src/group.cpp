@@ -6,4 +6,4 @@ Group::Group(std::vector<int> ids)
     team_slot = ids;
 }
 
-    std::vector<int> Group::Team_slot(){return team_slot;}
+std::vector<int> Group::Team_slot(){return team_slot;}

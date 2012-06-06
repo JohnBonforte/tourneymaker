@@ -12,5 +12,8 @@ public:
     std::string Name(){return name;}
 };
 
-std::vector<Team> debug_give_teams();
+typedef std::vector<Team> TeamContainer;
+typedef TeamContainer::iterator TCIterator;
+
+TeamContainer debug_give_teams();
 #endif

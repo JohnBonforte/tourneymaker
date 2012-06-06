@@ -10,6 +10,7 @@ Matches
     away (team)
     extra_time
 */
+#include <cstdlib>
 #include <iostream>
 #include <ctime>
 #include "tournament.h"
@@ -50,11 +51,11 @@ int main(int argc, char **argv)
 
 void clear_screen()
 {
-    #ifdef WINDOWS 
-    std::system ( "CLS" ); 
+    #ifdef _WIN32 
+    system ( "cls" ); 
     #else 
     // Assume POSIX 
-    std::system ( "clear" ); 
+    system ( "clear" ); 
     #endif
 }
 

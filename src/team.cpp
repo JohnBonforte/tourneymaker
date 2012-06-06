@@ -6,7 +6,7 @@ Team::Team(std::string nam):name(nam){
 }
 
 
-std::vector<Team> debug_give_teams()
+TeamContainer debug_give_teams()
 {
     const int NUM_COUNTRIES = 242;
     std::string country_names[NUM_COUNTRIES] = 
@@ -267,7 +267,6 @@ std::vector<Team> debug_give_teams()
     // temps.push_back(Team("Holland"));
     // temps.push_back(Team("Germany"));
     // temps.push_back(Team("Italy"));
-    for(int i=0;i<32;i++)
-        temps.push_back(countries[i]);
+    for(int i=0;i<32;i++) temps.push_back(countries[i]);
     return temps;
 }

@@ -14,4 +14,8 @@ public:
     std::vector<int> Team_slot();
     // void print_team_list();
 };
+
+typedef std::vector<Group> GroupContainer;
+typedef GroupContainer::iterator GCIterator;
+
 #endif
