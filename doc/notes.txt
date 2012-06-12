@@ -1,0 +1,64 @@
+Tested in:
+    vs2010 (windows 7)
+    g++ 4.5.2 (mingw)
+    g++ 4.6.2 (bodhi-linux)
+    g++ 4.6.2 (Ubuntu-linux)
+    (Should) (fedora-linux)
+    
+
+Command line
+tournament [-t 32] [-n teams.txt] [-A] [-k]
+
+/*
+Groups
+    team_slot[4]
+
+Teams
+
+Matches
+    home (team)
+    away (team)
+    extra_time
+*/
+
+class Team;
+class Group;
+class Tournament;
+class 
+
+List of participating teams.
+    Select teams from menu.
+number of groups 
+check everything makes sense (all teams have groups)
+
+
+Solo el torneo sabe el nombre de los equipos, el grupo no tiene acceso.
+
+
+Winning Eleven analysis
+Equipos elegibles : national club
+groups or knockout
+numteams
+human players
+h & a
+
+I wont't really modifying the vectors during the course of the tournament so
+it's pretty ok.
+
+    num_groups = ng;
+    // vector of indexes for teams
+    // shuffle
+    vector<int> team_idx(teams.size());
+	int count = 0;
+	//Hi, I'm wondering what's the most efficient way to populate a vector of ints with number from 1 to a given N (That is the size of another vector).  
+	//Initially I wrote a loop, but then I used for_each(vecB.begin(), vecB.end(), [&count, &vecA] (B_class b) { vecA.push_back(count); count++;});
+    std::for_each(teams.begin(), teams.end(), [&count, &team_idx] (Team t) { team_idx.push_back(count); count++;});
+    // Uses random seed
+    std::random_shuffle(team_idx.begin(), team_idx.end());
+    cout << "Creating random shuffle\n";
+	std::for_each(team_idx.begin(), team_idx.end(), [] (int n) {cout << n << "\n"; });
+    cout << "Every day... shuffling\n";
+    // apply to groups
+    for(int i=0;i<num_groups;++i)
+    {
+
