@@ -1,29 +1,29 @@
 #include <iostream>
+#include <cstdlib>
 #include <algorithm>
 #include "tournament.h"
 using std::cout;
 using std::vector;
 
-Tournament::Tournament(int ng=2)
+Tournament::Tournament(int ng=8,int tpg=4)
 {
     // teams = debug_give_teams();      
     teams = debug_give_teams();
+    if(teams.size() != (ng*tpg))
+    {
+        std::cerr << " if(teams.size() == (ng*tpg)) FAILED\n "; 
+        throw "Houston, we have a problem";
+        // throw runtime_error; //("Houston, we have a problem");
+    }
     num_groups = ng;
     // vector of indexes for teams
-    // shuffle
     vector<int> team_idx;
-    for(unsigned int i=0;i<teams.size();++i)
-        team_idx.push_back(i);
-    // Uses random seed
-    std::random_shuffle(team_idx.begin(), team_idx.end());
-    cout << "Creating random shuffle\n";
-    for(auto i = team_idx.begin(); i!= team_idx.end();++i)
-    {
-        cout << *i << "\n";
-    }
+    team_idx.reserve(teams.size());
+    int count = 0;
+    std::for_each(teams.begin(), teams.end(), [&count, &team_idx] (Team t) { team_idx.push_back(count); count++;});
+
     cout << "Every day... shuffling\n";
     // apply to groups
-    int tpg = 4; //teams per group
     for(int i=0;i<num_groups;++i)
     {
         vector<int>::const_iterator first = team_idx.begin() + tpg*i;
@@ -33,12 +33,11 @@ Tournament::Tournament(int ng=2)
     }
 }
 
+//! An implementation of a printer of teams
 void Tournament::print_team_list()
 {
     cout << "number of teams: " << teams.size() << "\n";
-	//std::vector<Team>::iterator
-    for(auto i = teams.begin(); i != teams.end(); ++i)
-    cout << i->Name() << "\n";  
+	std::for_each(teams.begin(), teams.end(), [] (Team n) {cout << n.Name() << "\n"; });
 }
 
 void Tournament::print_group_list()

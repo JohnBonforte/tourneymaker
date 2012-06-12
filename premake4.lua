@@ -25,7 +25,12 @@ solution "Tourneymaker"
          flags { "Optimize" }    
 
       configuration { "gmake" }
-          buildoptions { "-Wall", "-pedantic", "-std=c++0x" }
+          buildoptions { "-g", "-Wall", "-pedantic", "-std=c++0x" }
+
+      --configuration { "Debug", "gmake" }
+      --    buildoptions { "-o0", "-g" }
+
+
 
 
 

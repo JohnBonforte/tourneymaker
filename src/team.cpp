@@ -1,6 +1,16 @@
 #include "team.h"
 #include <algorithm>
 #include <string>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+
+// using std::vector;
+// using std::cout;
+// using std::string;
+using namespace std;
+
 Team::Team(std::string nam):name(nam){
 
 }
@@ -8,265 +18,29 @@ Team::Team(std::string nam):name(nam){
 
 TeamContainer debug_give_teams()
 {
-    const int NUM_COUNTRIES = 242;
-    std::string country_names[NUM_COUNTRIES] = 
-    {
-        "Ukrania",
-        "Abkhazi",
-        "Afghanistan"
-        "Akrotiri and Dhekelia"
-        "Aland",
-        "Albania",
-        "Algeria",
-        "American Samoa",
-        "Andorra",
-        "Angola",
-        "Anguilla",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Aruba",
-        "Ascension Island",
-        "Australia",
-        "Austria",
-        "Azerbaijan",
-        "Bahamas, The",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bermuda",
-        "Bhutan",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brazil",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cambodia",
-        "Cameroon",
-        "Canada",
-        "Cape Verde",
-        "Cayman Islands",
-        "Central Africa Republic",
-        "Chad",
-        "Chile",
-        "China",
-        "Christmas Island",
-        "Cocos (Keeling) Islands",
-        "Colombia",
-        "Comoros",
-        "Congo",
-        "Cook Islands",
-        "Costa Rica",
-        "Cote d'lvoire",
-        "Croatia",
-        "Cuba",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "East Timor Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Equatorial Guinea",
-        "Eritrea",
-        "Estonia",
-        "Ethiopia",
-        "Falkland Islands",
-        "Faroe Islands",
-        "Fiji",
-        "Finland",
-        "France",
-        "French Polynesia",
-        "Gabon",
-        "Cambia, The",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Gibraltar",
-        "Greece",
-        "Greenland",
-        "Grenada",
-        "Guam",
-        "Guatemala",
-        "Guemsey",
-        "Guinea",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Honduras",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "India",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Ireland",
-        "Isle of Man",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jersey",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Korea, N",
-        "Korea, S",
-        "Kosovo",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liberia",
-        "Libya",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macao",
-        "Macedonia",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mali",
-        "Malta",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Mayotte",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montenegro",
-        "Montserrat",
-        "Morocco",
-        "Mozambique",
-        "Myanmar",
-        "Nagorno-Karabakh",
-        "Namibia",
-        "Nauru",
-        "Nepal",
-        "Netherlands",
-        "Netherlands Antilles",
-        "New Caledonia",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "Nigeria",
-        "Niue",
-        "Norfolk Island",
-        "Northern Cyprus",
-        "Northern Mariana Islands",
-        "Norway",
-        "Oman",
-        "Pakistan",
-        "Palau",
-        "Palestine",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Pitcaim Islands",
-        "Poland",
-        "Portugal",
-        "Puerto Rico",
-        "Qatar",
-        "Romania",
-        "Russia",
-        "Rwanda",
-        "Sahrawi Arab Democratic Republic",
-        "Saint-Barthelemy",
-        "Saint Helena",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Saint Martin",
-        "Saint Pierre and Miquelon",
-        "Saint Vincent and Grenadines",
-        "Samos",
-        "San Marino",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "Somaliland",
-        "South Africa",
-        "South Ossetia",
-        "Spain",
-        "Sri Lanka",
-        "Sudan",
-        "Suriname",
-        "Svalbard",
-        "Swaziland",
-        "Sweden",
-        "Switzerland",
-        "Syria",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Togo",
-        "Tokelau",
-        "Tonga",
-        "Transnistria",
-        "Trinidad and Tobago",
-        "Tristan da Cunha",
-        "Tunisia",
-        "Turkey",
-        "Turkmenistan",
-        "Turks and Caicos Islands",
-        "Tuvalu",
-        "Uganda",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "United States",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Vatican City",
-        "Venezuela",
-        "Vietnam",
-        "Virgin Islands, British",
-        "Virgin Islands, U.S. ",
-        "Wallis and Futuna",
-        "Yemen",
-        "Zambia",
-        "Zimbabwe",
-    };
-    std::vector<std::string> countries;
-    countries.assign(country_names, country_names + NUM_COUNTRIES);
-    std::random_shuffle(countries.begin(), countries.end());
+    // TODO: Pick filename of team list.
+    std::string filename = "../../../data/en-US/euro2012.txt";
+    std::ifstream team_file(filename.c_str());
+    // TODO: Account for the usage of spaces.  Right now. Solved by using full
+    // words and underscores for spaces.
+    vector<string> available_teams((istream_iterator<string>(team_file)), istream_iterator<string>());
+    team_file.close();
+
+    const int available_teams_size = available_teams.size();
+    std::cout << "number of available teams: " << available_teams_size << "\n";
+     std::for_each(available_teams.begin(), available_teams.end(), [] (const string s) { cout << s <<"\n"; }); 
+     int wait = 0;
+    cin >> wait;
+    // TODO: Shuffle option?
+    // std::random_shuffle(countries.begin(), countries.end());
+
+    // TODO: Pick number of teams in tournament.
+    // // You should pick the number of teams at this point
+    int picked_number_of_teams = 16;
     std::vector<Team> temps;
-    // temps.push_back(Team("Argentina"));
-    // temps.push_back(Team("Brazil"));
-    // temps.push_back(Team("Paraguay"));
-    // temps.push_back(Team("Spain"));
-    // temps.push_back(Team("Portugal"));
-    // temps.push_back(Team("Holland"));
-    // temps.push_back(Team("Germany"));
-    // temps.push_back(Team("Italy"));
-    for(int i=0;i<32;i++) temps.push_back(countries[i]);
+    temps.reserve(picked_number_of_teams);
+    // TODO: Pick the ORDER of the teams.  This should account for the group
+    for(int i=0;i<picked_number_of_teams;i++)
+        temps.push_back(available_teams[i]);
     return temps;
 }

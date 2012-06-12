@@ -1,15 +1,3 @@
-/*
-Groups
-    team_slot[4]
-    Schedule[6]  
-
-Teams
-
-Matches
-    home (team)
-    away (team)
-    extra_time
-*/
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
@@ -20,8 +8,10 @@ void clear_screen();
 
 int main(int argc, char **argv)
 {
+    try
+    {
     srand((unsigned)time(0));
-    Tournament world_cup(8);
+    Tournament world_cup(4,4);
     char option = 'x';
     int counter = 0;
     do
@@ -30,7 +20,7 @@ int main(int argc, char **argv)
         std::cout << counter++ << "\nMenu\n";
         std::cout << "E[x]it - [G]roups - [C]ountries\n";
         std::cin.get(option);
-        std::cin.ignore(1,'\n');
+        std::cin.ignore(256,'\n');
         switch(option)
         {
             case 'G':
@@ -44,9 +34,18 @@ int main(int argc, char **argv)
         }
         char temp='.';
         std::cin.get(temp);
-        std::cin.ignore(1,'\n');
+        std::cin.ignore(256,'\n');
         
     } while(option != 'x');
+    }
+    // This guarantees that anything constructed inside that block 
+    // will be deconstructed in case of an exception. 
+    // TODO: Place proper custom Exceptions.  This won't allow me to
+    // differentiate between errors.
+    catch ( ... )
+    {
+        
+    }
 }
 
 void clear_screen()

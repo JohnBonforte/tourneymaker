@@ -9,7 +9,7 @@ private:
     std::string name;
 public: 
     Team(std::string nam);
-    std::string Name(){return name;}
+    std::string Name() const {return name;}
 };
 
 typedef std::vector<Team> TeamContainer;
